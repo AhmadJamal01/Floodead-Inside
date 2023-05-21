@@ -4,15 +4,24 @@
 
 ## Introduction
 
-Natural disasters, such as floods, have a significant impact on human lives, infrastructure, and the environment. Timely and accurate detection of flood events is crucial for effective disaster response and mitigation efforts. Satellite imagery analysis has emerged as a powerful tool in detecting and monitoring floods from a large-scale perspective. By leveraging the capabilities of satellite technology, we can obtain valuable insights into flood dynamics, extent, and severity, enabling early warning systems and facilitating efficient resource allocation during flood events.
+Natural disasters, such as floods, have a significant impact on human lives, infrastructure, and the environment. Timely and accurate detection of flood events is crucial for effective disaster response and mitigation efforts.   
+
+Satellite imagery analysis has emerged as a powerful tool in detecting and monitoring floods from a large-scale perspective.  
+
+By leveraging the capabilities of satellite technology, we can obtain valuable insights into flood dynamics, extent, and severity, enabling early warning systems and facilitating efficient resource allocation during flood events.
 
 ## Objective
 
-The objective of this project is to develop a robust flood detection system using satellite imagery. By harnessing the wealth of data captured by satellites, we aim to identify and map flood-prone areas, track flood progression, and provide near real-time information to aid disaster management agencies, policymakers, and first responders. Through advanced image processing and machine learning techniques, we seek to automate the flood detection process and provide accurate and timely information to support decision-making in flood-prone regions.
+The objective of this project is to develop a robust flood detection system using satellite imagery.  
+By harnessing the wealth of data captured by satellites, we aim to identify and map flood-prone areas, track flood progression, and provide near real-time information to aid disaster management agencies, policymakers, and first responders.   
+Through advanced image processing and machine learning techniques, we seek to automate the flood detection process and provide accurate and timely information to support decision-making in flood-prone regions.
 
 ## Methodology
 
-The project will utilize state-of-the-art satellite imagery. The imagery will undergo preprocessing steps to enhance its quality and facilitate feature extraction. Advanced image processing algorithms, such as dark object subtraction, color preprocessing, and classification, will be employed to identify flooded areas and distinguish them from other land cover types. Machine learning and deep learning algorithms, including supervised and unsupervised methods, will be trained on the datasets to improve the accuracy of flood detection and enable automated analysis of new satellite images.
+The project will utilize state-of-the-art satellite imagery.  
+The imagery will undergo preprocessing steps to enhance its quality and facilitate feature extraction.  
+Advanced image processing algorithms, such as dark object subtraction, color preprocessing, and classification, will be employed to identify flooded areas and distinguish them from other land cover types.   
+Machine learning and deep learning algorithms, including supervised and unsupervised methods, will be trained on the datasets to improve the accuracy of flood detection and enable automated analysis of new satellite images.
 
 ## Pipeline
 
@@ -108,8 +117,8 @@ We have implemented a machine learning classifier using the extracted features. 
 
 After applying different classifiers we got the following results:
 
-| Model  | Accuracy  | Balanced Accuracy  | F1 Score  | Time Taken  |
-|---: |---: |---: |---: |---: |---: |
+| Model   | Accuracy  | Balanced Accuracy   | F1 Score  | Time Taken  |
+|:---:    |:---:      |:---:                |:---:      |:---:        |
 | LGBMClassifier  | 0.90  | 0.90  | 0.90  | 19.69  |
 | NuSVC  | 0.88  | 0.88  | 0.88  | 1.32  |   |
 | RandomForestClassifier  | 0.88  | 0.88  | 0.88  | 2.99  |
@@ -140,9 +149,15 @@ We decided to go with the ResNet50 model.
 
 ### Pixel-by-Pixel Segmentation
 
-Pixel-by-pixel segmentation is a technique used in computer vision to assign a label to each individual pixel in an image. It involves analyzing the characteristics of each pixel, and determining its class or category, allowing for precise identification and differentiation of objects or regions within the image. Pixel-by-pixel segmentation is a challenging task that requires a lot of computational power and memory, especially when dealing with large images. However, it can be very useful in flood detection, as it allows for accurate identification of flooded areas and provides valuable information about the extent and severity of the flood.
+Pixel-by-pixel segmentation is a computer vision technique that involves labeling each pixel in an image by analyzing its characteristics to identify objects or regions in the image.  
+Although it requires significant computational power and memory, it is useful for flood detection, as it enables accurate identification of flooded areas and provides information about the flood's extent and severity.
 
-Since, our data is not prepared for this purpose, we had to use an unsupervised learning algorithm to cluster the pixels into two classes: flooded and non-flooded. We have used the K-Means clustering algorithm to cluster the pixels into two classes. We used the color is our main feature.
+As our data was not originally intended for flood detection, we had to resort to an unsupervised learning algorithm to cluster the image pixels into two categories:  
+  1. flooded 
+  2. non-flooded.  
+   
+To achieve this, we employed the K-Means clustering algorithm, with color as our primary feature.   
+This method allowed us to differentiate between flooded and non-flooded pixels, despite the absence of labeled data for supervised learning.
 
 We got some fascinating results:
 
@@ -160,6 +175,27 @@ For the pixel-by-pixel segmentation part, we used the **Silhouette Coefficient**
 
 The Silhouette Coefficient is a measure of how well instances within a cluster are separated from instances in other clusters. It is calculated by considering the average distance between each instance and other instances within the same cluster, and comparing it to the average distance between the instance and instances in other clusters. A higher Silhouette Coefficient indicates better-defined and well-separated clusters, while a lower value suggests overlapping or poorly separated clusters.
 
+### Segmentation with CAM (Class Activation Mapping)
+Class Activation Mapping (CAM) is a technique used in computer vision that generates a heatmap highlighting the regions of an image that are important for a neural network's classification decision.  
+It accomplishes this by using the weights of the last convolutional layer of the neural network to generate a class activation map, which indicates the contribution of each pixel in the image to the final classification decision.  
+The resulting heatmap can be overlaid on the original image to provide visual explanations of the network's decision-making process.  
+
+We computed CAM on the resnet50 model and applied Kmeans on the resulting heatmap to obtain the image mask for the image segmentation task.    
+
+Here are some of the results:   
+
+<div style="text-align:center">
+<img src="figures/CAM-clustering1.png" alt="CAM clustering" width="800" height="400">
+<img src="figures/CAM-clustering5.png" alt="CAM clustering" width="800" height="400">
+<img src="figures/CAM-clustering2.png" alt="CAM clustering" width="800" height="400">
+<img src="figures/CAM-clustering3.png" alt="CAM clustering" width="800" height="400">
+</div>
+
+
+
 ## Conclusion
 
-Satellite imagery analysis has the potential to revolutionize flood detection and monitoring by leveraging the power of remote sensing technology. This project aims to harness the vast amount of satellite data available to develop an efficient and accurate flood detection system. By combining advanced image processing techniques and machine learning algorithms, we aspire to provide timely and reliable information to aid in flood disaster response, mitigation, and long-term planning. The outcomes of this project have the potential to make a significant positive impact on society by enhancing flood resilience and reducing the human and economic losses associated with floods.
+Satellite imagery analysis has the potential to revolutionize flood detection and monitoring by leveraging the power of remote sensing technology.  
+This project aims to harness the vast amount of satellite data available to develop an efficient and accurate flood detection system.   
+By combining advanced image processing techniques and machine learning algorithms, we aspire to provide timely and reliable information to aid in flood disaster response, mitigation, and long-term planning.   
+The outcomes of this project have the potential to make a significant positive impact on society by enhancing flood resilience and reducing the human and economic losses associated with floods.
