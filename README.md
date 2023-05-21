@@ -93,8 +93,18 @@ We also thought that dimensions and contours is a very important features, for e
 
 Finally, we became aware that the texture is the most critical feature in our problem. Flooded images has a very different texture than non-flooded images. Hence we used the following Texture-based Features:
 
-- **Gray-Level Co-occurrence Matrix (GLCM)**: Computes the distribution of co-occurring pixel values in different directions.
+- **Gray-Level Co-occurrence Matrix (GLCM)**: Computes the distribution of co-occurring pixel values in different directions. The extracted features are for properties: `['energy', 'homogeneity', 'contrast']`,
+  1. Contrast is a good way to distinguish between flooded and non-flooded images as water has low contrasts and non-flooded images mught have high contrasts.
+  2. Homogeneity is a good way to distinguish between flooded and non-flooded images as water has very high homogeneity.
+  3. We tried other properties like energy, correlation, ASM, dissimilarity, but energy was the only one that made a positive difference.
+  4. We tried different distances `[1, 3]` and angles `[0, 45, 90]`, This is to capture the texture in different directions (rotation-invariance) and different distances (scale-invariance).
+  5. all these combinations result in 18 features.
+  6. we patchify the image into 64 patches and extract the GLCM features from each patch. This results in 1152 feature-vector for each image.
+
 - **HOG (Histogram of Oriented Gradients)**: It represents the local shape and texture information of an image by capturing the distribution of gradients in different regions.
+  1. we also used patching (cells) to extract the HOG features from each patch. This results in 512 feature-vector for each image.
+  2. both these features are concatenated to form a 1664 feature-vector for each image and used in the training and classification steps.
+
 - **Local Binary Patterns (LBP)**: Captures the patterns in the texture of the image.
 
 ### Classification
@@ -110,15 +120,15 @@ After applying different classifiers we got the following results:
 
 | Model  | Accuracy  | Balanced Accuracy  | F1 Score  | Time Taken  |
 |---: |---: |---: |---: |---: |---: |
-| LGBMClassifier  | 0.90  | 0.90  | 0.90  | 19.69  |
-| NuSVC  | 0.88  | 0.88  | 0.88  | 1.32  |   |
-| RandomForestClassifier  | 0.88  | 0.88  | 0.88  | 2.99  |
-| ExtraTreesClassifier  | 0.88  | 0.88  | 0.88  | 1.18  |
-| SVC  | 0.87  | 0.87  | 0.87  | 1.06  |   |
-| AdaBoostClassifier  | 0.86  | 0.86  | 0.86  | 19.59  |
-| LogisticRegression  | 0.81  | 0.81  | 0.81  | 1.17  |
-| CalibratedClassifierCV  | 0.80  | 0.80  | 0.80  | 6.19  |
-| LinearSVC  | 0.80  | 0.80  | 0.80  | 1.82  |
+| LGBMClassifier  | 0.92  | 0.92  | 0.92  | 5.02  |
+| AdaBoostClassifier  | 0.90  | 0.90  | 0.90  | 9.75  |
+| XGBClassifier  | 0.89  | 0.89  | 0.89  | 3.59  |
+| BaggingClassifier  | 0.89  | 0.89  | 0.89  | 7.62  |
+| ExtraTreesClassifier  | 0.89  | 0.89  | 0.89  | 0.5  |
+| RandomForestClassifier  | 0.88  | 0.88  | 0.88  | 2.32  |
+| SVC  | 0.88  | 0.88  | 0.88  | 0.41  |   |
+| NuSVC  | 0.87  | 0.87  | 0.87  | 0.47  |   |
+| CalibratedClassifierCV  | 0.87  | 0.87  | 0.86  | 1.79  |
 
 Hence, we decided to go with the LGBMClassifier.
 
