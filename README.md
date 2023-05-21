@@ -83,8 +83,6 @@ We have conducted several image processing techniques to enhance the quality of 
 - Dark Object Subtraction for Haze Removal: Dark Object Subtraction is important for haze removal as it helps to enhance visibility and improve image quality by reducing the atmospheric haze.
 - Histogram Equalization: Histogram Equalization is important for improving the contrast and enhancing the overall appearance of an image by redistributing the pixel intensities.
 - Contrast Stretching: Contrast Stretching is important for enhancing image details and improving the dynamic range by expanding the range of pixel intensities. We did it by performing a linear scaling for the pixel values between the desired minimum and maximum intensity levels.
-- Sharpening Filters: Sharpening filters are important for enhancing image details and improving edge definition. They help to emphasize high-frequency components and increase image sharpness.
-- Denoising Filters: Denoising filters are important for reducing noise and improving image quality by removing unwanted artifacts and preserving important details. OpenCV provides various denoising filters, such as the Bilateral Filter (`cv2.bilateralFilter()`), which can be used to effectively reduce different types of noise in images. and the Non-Local Means Denoising algorithm (`cv2.fastNlMeansDenoising()`).  We used the later.
 
 ### Feature Extraction
 
