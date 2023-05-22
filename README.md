@@ -40,6 +40,7 @@ Machine learning and deep learning algorithms, including supervised and unsuperv
 We have got a dataset that consists of 922 satellite images of the different areas taken at different times. It includes a mix of images, with and without floods. The images are in the form of 3-channel RGB images of size 512x512 pixels.
 
 <!-- TODO: Add the GANs part -->
+<!-- TODO: Add the Kmeans + GLCM part -->
 
 ### EDA
 
@@ -128,16 +129,16 @@ We have implemented a machine learning classifier using the extracted features. 
 After applying different classifiers we got the following results:
 
 | Model   | Accuracy  | Balanced Accuracy   | F1 Score  | Time Taken  |
-|:---:    |:---:      |:---:                |:---:      |:---:        |
-| LGBMClassifier  | 0.90  | 0.90  | 0.90  | 19.69  |
-| NuSVC  | 0.88  | 0.88  | 0.88  | 1.32  |   |
-| RandomForestClassifier  | 0.88  | 0.88  | 0.88  | 2.99  |
-| ExtraTreesClassifier  | 0.88  | 0.88  | 0.88  | 1.18  |
-| SVC  | 0.87  | 0.87  | 0.87  | 1.06  |   |
-| AdaBoostClassifier  | 0.86  | 0.86  | 0.86  | 19.59  |
-| LogisticRegression  | 0.81  | 0.81  | 0.81  | 1.17  |
-| CalibratedClassifierCV  | 0.80  | 0.80  | 0.80  | 6.19  |
-| LinearSVC  | 0.80  | 0.80  | 0.80  | 1.82  |
+|---: |---: |---: |---: |---: |---: |
+| LGBMClassifier  | 0.92  | 0.92  | 0.92  | 5.02  |
+| AdaBoostClassifier  | 0.90  | 0.90  | 0.90  | 9.75  |
+| XGBClassifier  | 0.89  | 0.89  | 0.89  | 3.59  |
+| BaggingClassifier  | 0.89  | 0.89  | 0.89  | 7.62  |
+| ExtraTreesClassifier  | 0.89  | 0.89  | 0.89  | 0.5  |
+| RandomForestClassifier  | 0.88  | 0.88  | 0.88  | 2.32  |
+| SVC  | 0.88  | 0.88  | 0.88  | 0.41  |   |
+| NuSVC  | 0.87  | 0.87  | 0.87  | 0.47  |   |
+| CalibratedClassifierCV  | 0.87  | 0.87  | 0.86  | 1.79  |
 
 Hence, we decided to go with the LGBMClassifier.
 
