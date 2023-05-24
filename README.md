@@ -128,17 +128,17 @@ We have implemented a machine learning classifier using the extracted features. 
 
 After applying different classifiers we got the following results:
 
-| Model   | Accuracy  | Balanced Accuracy   | F1 Score  | Time Taken  |
-|---: |---: |---: |---: |---: |---: |
-| LGBMClassifier  | 0.92  | 0.92  | 0.92  | 5.02  |
-| AdaBoostClassifier  | 0.90  | 0.90  | 0.90  | 9.75  |
-| XGBClassifier  | 0.89  | 0.89  | 0.89  | 3.59  |
-| BaggingClassifier  | 0.89  | 0.89  | 0.89  | 7.62  |
-| ExtraTreesClassifier  | 0.89  | 0.89  | 0.89  | 0.5  |
-| RandomForestClassifier  | 0.88  | 0.88  | 0.88  | 2.32  |
-| SVC  | 0.88  | 0.88  | 0.88  | 0.41  |   |
-| NuSVC  | 0.87  | 0.87  | 0.87  | 0.47  |   |
-| CalibratedClassifierCV  | 0.87  | 0.87  | 0.86  | 1.79  |
+| Model                   | Accuracy | Balanced Accuracy | F1 Score | Time Taken |
+|------------------------:|---------:|------------------:|---------:|-----------:|
+| LGBMClassifier          | 0.92     | 0.92              | 0.92     | 5.02       |
+| AdaBoostClassifier      | 0.90     | 0.90              | 0.90     | 9.75       |
+| XGBClassifier           | 0.89     | 0.89              | 0.89     | 3.59       |
+| BaggingClassifier       | 0.89     | 0.89              | 0.89     | 7.62       |
+| ExtraTreesClassifier    | 0.89     | 0.89              | 0.89     | 0.5        |
+| RandomForestClassifier  | 0.88     | 0.88              | 0.88     | 2.32       |
+| SVC                     | 0.88     | 0.88              | 0.88     | 0.41       |
+| NuSVC                   | 0.87     | 0.87              | 0.87     | 0.47       |
+| CalibratedClassifierCV  | 0.87     | 0.87              | 0.86     | 1.79       |
 
 Hence, we decided to go with the LGBMClassifier.
 
