@@ -168,6 +168,8 @@ As our data was not originally intended for flood detection, we had to resort to
   1. flooded
   2. non-flooded.  
 
+#### K-Means Clustering
+
 To achieve this, we employed the K-Means clustering algorithm, with color as our primary feature.
 This method allowed us to differentiate between flooded and non-flooded pixels, despite the absence of labeled data for supervised learning.
 
@@ -182,7 +184,6 @@ We got some fascinating results:
 <!-- TODO: add the GLCM part -->
 #### Segmentation with CAM (Class Activation Mapping)
 
-### Segmentation with CAM (Class Activation Mapping)
 Class Activation Mapping (CAM) is a technique used in computer vision that generates a heatmap highlighting the regions of an image that are important for a neural network's classification decision.  
 It accomplishes this by using the weights of the last convolutional layer of the neural network to generate a class activation map, which indicates the contribution of each pixel in the image to the final classification decision.  
 The resulting heatmap can be overlaid on the original image to provide visual explanations of the network's decision-making process.  
